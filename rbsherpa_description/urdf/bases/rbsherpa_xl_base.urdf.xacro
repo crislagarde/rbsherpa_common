@@ -13,12 +13,12 @@
     <!-- BASE FOOTPRINT -->
     <xacro:if value="${publish_bf}">
       <link name="${prefix}base_footprint">
-        <visual>
+        <!--visual>
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
             <box size="0.001 0.001 0.001" />
           </geometry>
-        </visual>
+        </visual-->
       </link>
 
       <joint name="${prefix}base_footprint_joint" type="fixed">
@@ -30,7 +30,7 @@
     </xacro:if>
 
     <!-- BASE_LINK -->
-    <link name="${prefix}base_link">   x:1.025 y:0.75 z:0.3
+    <link name="${prefix}base_link">
       <inertial>
         <mass value="25.0" />
         <origin xyz="0 0 0.35" />
