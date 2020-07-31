@@ -17,7 +17,8 @@
     <xacro:include filename="$(find rbsherpa_description)/urdf/wheels/motor_wheel_xl.urdf.xacro" />
 
     <!-- Import arm structure -->
-    <xacro:include filename="$(find rbsherpa_description)/urdf/bases/bi_arm_support.urdf.xacro" />
+    <xacro:include filename="$(find rbsherpa_description)/urdf/bases/bi_arm_support_ur10.urdf.xacro" /> <!-- Two ur10 -->
+    <xacro:include filename="$(find rbsherpa_description)/urdf/bases/bi_arm_support_ur10e.urdf.xacro" /> <!-- Two ur10e -->
 
     <!-- Import all available sensors -->
     <xacro:include filename="$(find robotnik_sensors)/urdf/all_sensors.urdf.xacro" />
@@ -73,31 +74,35 @@
 
         <!-- ARM  -->
         
-        <xacro:if value="$(arg launch_arm)">
-          <xacro:bi_arm_support prefix="${prefix}" parent="${prefix}base_link" hq="true" load_kinematics_file="${load_kinematics_file}">
+        <!--xacro:if value="$(arg launch_arm)">
+          <xacro:bi_arm_support_ur10 prefix="${prefix}" parent="${prefix}base_link" hq="true" load_kinematics_file="${load_kinematics_file}">
               <origin xyz="${G2_offset_x} ${G2_offset_y} ${G2_offset_z}" rpy="0 0 0"/>
-          </xacro:bi_arm_support>
-        </xacro:if>
+          </xacro:bi_arm_support_ur10>
+        </xacro:if-->
 
+        <xacro:if value="$(arg launch_arm)">
+          <xacro:bi_arm_support_ur10e prefix="${prefix}" parent="${prefix}base_link" hq="true" load_kinematics_file="${load_kinematics_file}">
+              <origin xyz="${G2_offset_x} ${G2_offset_y} ${G2_offset_z}" rpy="0 0 1.57"/>
+          </xacro:bi_arm_support_ur10e>
+        </xacro:if>
 
         <!-- SENSORS see robotnik_sensors for the specific configuration -->
 
         <!-- IMU -->
-        <!--xacro:sensor_imu_hector prefix="${prefix}imu" parent="${prefix}base_link">
+        <xacro:sensor_imu_hector prefix="${prefix}imu" parent="${prefix}base_link">
             <origin xyz="0.3 0.3 0.250" rpy="0 0 0"/>
-        </xacro:sensor_imu_hector-->
+        </xacro:sensor_imu_hector>
         <!-- GPS -->
-        <!--xacro:sensor_gps prefix="${prefix}gps" parent="${prefix}base_link">
-            <origin xyz="-0.04625 0.0 1.115" rpy="0 0 0"/>
-        </xacro:sensor_gps-->
-        <!-- Solid-State laser -->
-        <!--xacro:sensor_benewake_ce30c prefix="${prefix}front_ss_laser" parent="${prefix}base_link" gpu="false">
+        <xacro:sensor_gps prefix="${prefix}gps" parent="${prefix}base_link">
+            <origin xyz="-0.3686 ${G2_offset_y} 0.48288" rpy="0 0 0"/>
+        </xacro:sensor_gps>
+        <!-- Laser -->
+        <xacro:sensor_benewake_ce30c prefix="${prefix}front_ss_laser" parent="${prefix}base_link" gpu="false">
             <origin xyz="0.5657 0.0 0.1622" rpy="0 0 0"/>
-        </xacro:sensor_benewake_ce30c-->
-        <!-- 2d laser -->
-        <!--xacro:sensor_sick_tim551 prefix="${prefix}front_laser" parent="${prefix}base_link" prefix_topic="front_laser">
+        </xacro:sensor_benewake_ce30c>
+        <xacro:sensor_sick_tim551 prefix="${prefix}front_laser" parent="${prefix}base_link" prefix_topic="front_laser">
             <origin xyz="0.5307 0.0 0.15389" rpy="${180*deg2rad} 0 0"/>
-        </xacro:sensor_sick_tim551-->
+        </xacro:sensor_sick_tim551>
 
     </xacro:macro>
 
