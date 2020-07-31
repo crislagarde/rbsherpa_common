@@ -10,7 +10,6 @@
     <arg name="load_robot_description" value="false"/>
   </include>
 
-  <!--<rosparam command="load" file="$(find vulcano_moveit_config)/config/joint_names.yaml"/> -->
   <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
   <include file="$(find rbsherpa_xl_2ur10_moveit_config)/launch/move_group.launch">
     <arg name="allow_trajectory_execution" value="true"/>
