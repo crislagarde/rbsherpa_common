@@ -58,6 +58,7 @@
   <arg name="overwrite_frames" default="false" />
   <arg name="odom_frame" default="$(arg prefix)odom"/>
   <arg name="base_frame" default="$(arg prefix)base_footprint"/>
+  <arg name="global_frame" default="$(arg prefix)map"/>
   <arg name="odom_frame_param_name" default="" /> <!-- this depends on planners used -->
   <arg name="base_frame_param_name" default="" /> <!-- this depends on planners used -->
 
@@ -85,7 +86,7 @@
     <rosparam file="$(arg global_planner_params_file)" command="load" subst_value="true"/>
 
     <!-- Local planner params-->
-    <!--rosparam file="$(arg local_planner_params_file)" command="load" subst_value="true"/-->
+    <rosparam file="$(arg local_planner_params_file)" command="load" subst_value="true"/>
 
     <!-- Overwrite frames, should not be used unless reasonable reason -->
     <!--param if="$(arg overwrite_frames)" name="$(arg odom_frame_param_name)" value="$(arg odom_frame)" />
