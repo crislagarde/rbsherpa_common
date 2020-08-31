@@ -92,17 +92,19 @@
         <xacro:sensor_imu_hector prefix="${prefix}imu" parent="${prefix}base_link">
             <origin xyz="0.3 0.3 0.250" rpy="0 0 0"/>
         </xacro:sensor_imu_hector>
-        <!-- GPS -->
-        <xacro:sensor_gps prefix="${prefix}gps" parent="${prefix}base_link">
-            <origin xyz="-0.3686 ${G2_offset_y} 0.48288" rpy="0 0 0"/>
-        </xacro:sensor_gps>
+
         <!-- Laser -->
-        <xacro:sensor_benewake_ce30c prefix="${prefix}front_ss_laser" parent="${prefix}base_link" gpu="false">
-            <origin xyz="0.5657 0.0 0.1622" rpy="0 0 0"/>
-        </xacro:sensor_benewake_ce30c>
-        <xacro:sensor_sick_tim551 prefix="${prefix}front_laser" parent="${prefix}base_link" prefix_topic="front_laser">
-            <origin xyz="0.5307 0.0 0.15389" rpy="${180*deg2rad} 0 0"/>
-        </xacro:sensor_sick_tim551>
+        <xacro:sensor_rslidar_16 prefix="${prefix}rslidar" parent="${prefix}base_link" prefix_topic="front_laser">
+            <origin xyz="0.1617 0 0.69888" rpy="0 0 0"/>
+        </xacro:sensor_rslidar_16>
+
+        <xacro:sensor_sick_microscan3 prefix="${prefix}front_laser" parent="${prefix}base_link" prefix_topic="front_laser">
+            <origin xyz="0.647 -0.38975 0.40646" rpy="3.141592 0 -0.5854"/>
+        </xacro:sensor_sick_microscan3>
+
+        <xacro:sensor_sick_microscan3 prefix="${prefix}rear_laser" parent="${prefix}base_link" prefix_topic="rear_laser">
+            <origin xyz="-0.647 0.38975 0.40646" rpy="3.141592 0 2.556192"/>
+        </xacro:sensor_sick_microscan3>
 
     </xacro:macro>
 
